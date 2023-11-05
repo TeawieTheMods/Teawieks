@@ -57,7 +57,7 @@ repositories {
         name = "TerraformersMC"
         url = uri("https://maven.terraformersmc.com/")
     }
-    githubMaven("AppliedEnergistics/Applied-Energistics-2")
+    //githubMaven("AppliedEnergistics/Applied-Energistics-2")
     exclusiveContent {
         forRepository {
             maven {
@@ -121,7 +121,8 @@ dependencies {
     modCompileOnly("dev.emi:emi-forge:${properties["emi_version"]}:api")
     modRuntimeOnly("dev.emi:emi-forge:${properties["emi_version"]}")
 
-    modImplementation("appeng:appliedenergistics2-forge:${properties["ae2_version"]}")
+    //modImplementation("appeng:appliedenergistics2-forge:${properties["ae2_version"]}")
+    modImplementation("maven.modrinth:XxWD5pD3:${properties["ae2_version"]}-forge")
 
     modImplementation("maven.modrinth:pNabrMMw:${properties["ae2wtlib_version"]}-forge")
 
