@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "package": "vg.skye.teawieks.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "mixins": [
+    "dyhex.ItemSpellbookMixin",
+    "dyhex.ItemStaffMixin",
+    "dyhex.RegisterClientStuffMixin",
+    "experiencefix.ServerPlayerMixin",
+    "procheat.PlayerMixin",
+    "procheat.ServerGamePacketListenerImplMixin",
+    "procheat.ServerPlayerGameModeMixin",
+    "scaler.MsgShiftScrollC2SMixin",
+    "scaler.ShiftScrollListenerMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
