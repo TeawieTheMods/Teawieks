@@ -1,0 +1,10 @@
+{
+  "loader": "forge:obj",
+  "model": "teawieks:models/block/hipolywie.obj",
+  "flip_v": true,
+  "shade_quads": true,
+  "emissive_ambient": true,
+  "textures": {
+    "texture0": "teawieks:block/hipolywie"
+  }
+}

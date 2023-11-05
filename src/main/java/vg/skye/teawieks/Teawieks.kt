@@ -5,7 +5,9 @@ import net.minecraft.network.chat.Component
 import net.minecraft.server.packs.PackType
 import net.minecraft.server.packs.repository.Pack
 import net.minecraft.server.packs.repository.PackSource
+import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.DyeableLeatherItem
+import net.minecraft.world.item.Item
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.client.event.RegisterColorHandlersEvent
 import net.minecraftforge.event.AddPackFindersEvent
@@ -20,6 +22,7 @@ import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 import vg.skye.teawieks.scaler.ScalerItem
+import vg.skye.teawieks.wie.HiPolywieBlock
 import java.io.IOException
 import java.util.function.Consumer
 
@@ -31,9 +34,15 @@ object Teawieks {
     val LOGGER: Logger = LogManager.getLogger(ID)
 
     init {
-        val register = DeferredRegister.create(ForgeRegistries.ITEMS, ID)
-        register.register("scaler") { ScalerItem }
-        register.register(MOD_BUS)
+        DeferredRegister.create(ForgeRegistries.BLOCKS, ID).apply {
+            register("hipolywie") { HiPolywieBlock }
+            register(MOD_BUS)
+        }
+        DeferredRegister.create(ForgeRegistries.ITEMS, ID).apply {
+            register("scaler") { ScalerItem }
+            register("hipolywie") { BlockItem(HiPolywieBlock, Item.Properties()) }
+            register(MOD_BUS)
+        }
         if (FMLEnvironment.dist == Dist.CLIENT) {
             MOD_BUS.register(this)
         }
