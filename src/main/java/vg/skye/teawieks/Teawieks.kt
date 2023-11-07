@@ -23,6 +23,7 @@ import org.apache.logging.log4j.Logger
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 import vg.skye.teawieks.scaler.ScalerItem
 import vg.skye.teawieks.wie.HiPolywieBlock
+import vg.skye.teawieks.wie.WieBlock
 import java.io.IOException
 import java.util.function.Consumer
 
@@ -33,16 +34,21 @@ object Teawieks {
     @JvmField
     val LOGGER: Logger = LogManager.getLogger(ID)
 
+    val blocks = DeferredRegister.create(ForgeRegistries.BLOCKS, ID)
+    val hipolywieBlock = blocks.register("hipolywie") { HiPolywieBlock }
+    val teawieBlock = blocks.register("teawie") { WieBlock() }
+    val coffwieBlock = blocks.register("coffwie") { WieBlock() }
+
+    val items = DeferredRegister.create(ForgeRegistries.ITEMS, ID)
+    val scalerItem = items.register("scaler") { ScalerItem }
+    val hipolywieItem = items.register("hipolywie") { BlockItem(hipolywieBlock.get(), Item.Properties()) }
+    val teawieItem = items.register("teawie") { BlockItem(teawieBlock.get(), Item.Properties()) }
+    val coffwieItem = items.register("coffwie") { BlockItem(coffwieBlock.get(), Item.Properties()) }
+
     init {
-        DeferredRegister.create(ForgeRegistries.BLOCKS, ID).apply {
-            register("hipolywie") { HiPolywieBlock }
-            register(MOD_BUS)
-        }
-        DeferredRegister.create(ForgeRegistries.ITEMS, ID).apply {
-            register("scaler") { ScalerItem }
-            register("hipolywie") { BlockItem(HiPolywieBlock, Item.Properties()) }
-            register(MOD_BUS)
-        }
+        blocks.register(MOD_BUS)
+        items.register(MOD_BUS)
+
         if (FMLEnvironment.dist == Dist.CLIENT) {
             MOD_BUS.register(this)
         }

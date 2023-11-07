@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=east": {
-      "model": "teawieks:block/hipolywie",
+      "model": "teawieks:block/coffwie",
       "y": 270
     },
     "facing=north": {
-      "model": "teawieks:block/hipolywie",
+      "model": "teawieks:block/coffwie",
       "y": 180
     },
     "facing=south": {
-      "model": "teawieks:block/hipolywie"
+      "model": "teawieks:block/coffwie"
     },
     "facing=west": {
-      "model": "teawieks:block/hipolywie",
+      "model": "teawieks:block/coffwie",
       "y": 90
     }
   }
