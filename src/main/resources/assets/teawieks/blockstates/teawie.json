@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "teawieks:block/teawie",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "teawieks:block/teawie",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "teawieks:block/teawie"
+    },
+    "facing=west": {
+      "model": "teawieks:block/teawie",
+      "y": 90
+    }
+  }
+}

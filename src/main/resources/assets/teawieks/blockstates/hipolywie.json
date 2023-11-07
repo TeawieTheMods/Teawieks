@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "teawieks:block/hipolywie",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "teawieks:block/hipolywie",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "teawieks:block/hipolywie"
+    },
+    "facing=west": {
+      "model": "teawieks:block/hipolywie",
+      "y": 90
+    }
+  }
+}

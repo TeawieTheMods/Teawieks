@@ -5,7 +5,9 @@ import net.minecraft.network.chat.Component
 import net.minecraft.server.packs.PackType
 import net.minecraft.server.packs.repository.Pack
 import net.minecraft.server.packs.repository.PackSource
+import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.DyeableLeatherItem
+import net.minecraft.world.item.Item
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.client.event.RegisterColorHandlersEvent
 import net.minecraftforge.event.AddPackFindersEvent
@@ -20,6 +22,8 @@ import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 import vg.skye.teawieks.scaler.ScalerItem
+import vg.skye.teawieks.wie.HiPolywieBlock
+import vg.skye.teawieks.wie.WieBlock
 import java.io.IOException
 import java.util.function.Consumer
 
@@ -30,10 +34,21 @@ object Teawieks {
     @JvmField
     val LOGGER: Logger = LogManager.getLogger(ID)
 
+    val blocks = DeferredRegister.create(ForgeRegistries.BLOCKS, ID)
+    val hipolywieBlock = blocks.register("hipolywie") { HiPolywieBlock }
+    val teawieBlock = blocks.register("teawie") { WieBlock() }
+    val coffwieBlock = blocks.register("coffwie") { WieBlock() }
+
+    val items = DeferredRegister.create(ForgeRegistries.ITEMS, ID)
+    val scalerItem = items.register("scaler") { ScalerItem }
+    val hipolywieItem = items.register("hipolywie") { BlockItem(hipolywieBlock.get(), Item.Properties()) }
+    val teawieItem = items.register("teawie") { BlockItem(teawieBlock.get(), Item.Properties()) }
+    val coffwieItem = items.register("coffwie") { BlockItem(coffwieBlock.get(), Item.Properties()) }
+
     init {
-        val register = DeferredRegister.create(ForgeRegistries.ITEMS, ID)
-        register.register("scaler") { ScalerItem }
-        register.register(MOD_BUS)
+        blocks.register(MOD_BUS)
+        items.register(MOD_BUS)
+
         if (FMLEnvironment.dist == Dist.CLIENT) {
             MOD_BUS.register(this)
         }

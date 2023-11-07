@@ -1,0 +1,9 @@
+newmtl Material
+#Ns 6.112394
+Ka 0.700000 0.700000 0.700000
+Ks 0.060000 0.060000 0.060000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd teawieks:block/hipolywie
