@@ -127,6 +127,8 @@ dependencies {
 
     modImplementation(files("libs/hexcasting-forge-1.20.1-0.11.1-7.jar"))
 
+    modImplementation(files("libs/wnboi-0.1.0b-forge.jar"))
+
     // Sophisticated Series also has github maven but
     // its artifacts are..... cursed
 //    modImplementation("curse.maven:sophisticated-backpacks-422301:4808060")

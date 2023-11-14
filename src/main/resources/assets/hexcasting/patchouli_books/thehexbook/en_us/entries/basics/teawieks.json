@@ -1,0 +1,14 @@
+{
+  "name": "teawieks.hexcasting.entry.main",
+  "icon": "teawieks:scaler",
+  "category": "hexcasting:basics",
+  "priority": true,
+  "sortnum": 1.5,
+  "advancement": "hexcasting:root",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "teawieks.hexcasting.page.main"
+    }
+  ]
+}

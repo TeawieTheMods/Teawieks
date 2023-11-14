@@ -15,6 +15,7 @@
     "scaler.ShiftScrollListenerMixin"
   ],
   "client": [
+    "wheex.ItemSpellbookMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,6 +1,13 @@
 package vg.skye.teawieks
 
+import at.petrak.hexcasting.api.casting.ActionRegistryEntry
+import at.petrak.hexcasting.api.casting.math.HexDir
+import at.petrak.hexcasting.api.casting.math.HexPattern
+import at.petrak.hexcasting.common.items.storage.ItemSpellbook
 import at.petrak.hexcasting.common.lib.HexItems
+import at.petrak.hexcasting.common.lib.HexRegistries
+import com.samsthenerd.wnboi.interfaces.KeyboundItem
+import net.minecraft.client.Minecraft
 import net.minecraft.network.chat.Component
 import net.minecraft.server.packs.PackType
 import net.minecraft.server.packs.repository.Pack
@@ -8,7 +15,10 @@ import net.minecraft.server.packs.repository.PackSource
 import net.minecraft.world.item.DyeableLeatherItem
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.client.event.RegisterColorHandlersEvent
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent
 import net.minecraftforge.event.AddPackFindersEvent
+import net.minecraftforge.event.TickEvent
+import net.minecraftforge.event.TickEvent.ClientTickEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.ModList
 import net.minecraftforge.fml.common.Mod
@@ -18,8 +28,10 @@ import net.minecraftforge.registries.ForgeRegistries
 import net.minecraftforge.resource.PathPackResources
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import thedarkcolour.kotlinforforge.forge.FORGE_BUS
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 import vg.skye.teawieks.scaler.ScalerItem
+import vg.skye.teawieks.wheex.OpSetLabel
 import java.io.IOException
 import java.util.function.Consumer
 
@@ -34,8 +46,16 @@ object Teawieks {
         val register = DeferredRegister.create(ForgeRegistries.ITEMS, ID)
         register.register("scaler") { ScalerItem }
         register.register(MOD_BUS)
+
+        val patternRegister = DeferredRegister.create(HexRegistries.ACTION, ID)
+        patternRegister.register("label") {
+            ActionRegistryEntry(HexPattern.fromAngles("wwedwewdweqawqwqwqwqwqw", HexDir.SOUTH_WEST), OpSetLabel())
+        }
+        patternRegister.register(MOD_BUS)
+
         if (FMLEnvironment.dist == Dist.CLIENT) {
             MOD_BUS.register(this)
+            FORGE_BUS.register(ForgeBusListener)
         }
     }
 
@@ -66,6 +86,11 @@ object Teawieks {
     }
 
     @SubscribeEvent
+    fun registerKeyMappings(event: RegisterKeyMappingsEvent) {
+        event.register(TeawieksKeybinds.IOTA_WHEEL_KEYBIND)
+    }
+
+    @SubscribeEvent
     fun addResourcePack(event: AddPackFindersEvent) {
         try {
             if (event.packType == PackType.CLIENT_RESOURCES) {
@@ -92,6 +117,25 @@ object Teawieks {
             }
         } catch (ex: IOException) {
             throw RuntimeException(ex)
+        }
+    }
+
+    object ForgeBusListener {
+        @SubscribeEvent
+        fun registerOnTick(event: ClientTickEvent) {
+            if (event.phase != TickEvent.Phase.END) return
+            if (Minecraft.getInstance().player == null) return
+            if (TeawieksKeybinds.IOTA_WHEEL_KEYBIND.isDown) {
+                val mainHand = Minecraft.getInstance().player!!.mainHandItem.item
+                val offHand = Minecraft.getInstance().player!!.offhandItem.item
+                if (mainHand is ItemSpellbook && mainHand is KeyboundItem) {
+                    LOGGER.info("opening mainhand")
+                    mainHand.openScreen()
+                } else if (offHand is ItemSpellbook && offHand is KeyboundItem) {
+                    LOGGER.info("opening offhand")
+                    offHand.openScreen()
+                }
+            }
         }
     }
 }
