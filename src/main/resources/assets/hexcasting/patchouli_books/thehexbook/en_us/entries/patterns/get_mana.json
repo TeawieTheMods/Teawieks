@@ -1,0 +1,26 @@
+{
+  "name": "teawieks.hexcasting.entry.get_mana",
+  "category": "hexcasting:patterns",
+  "icon": "botania:mana_pool",
+  "sortnum": 7,
+  "advancement": "hexcasting:root",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "teawieks:get_mana",
+      "anchor": "teawieks:get_mana",
+      "input": "vector",
+      "output": "num",
+      "text": "teawieks.hexcasting.page.get_mana.0"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "teawieks:get_max_mana",
+      "anchor": "teawieks:get_max_mana",
+      "input": "vector",
+      "output": "num",
+      "text": "teawieks.hexcasting.page.get_mana.1"
+    }
+  ]
+}

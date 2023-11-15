@@ -129,6 +129,8 @@ dependencies {
 
     modImplementation(files("libs/wnboi-0.1.0b-forge.jar"))
 
+    modImplementation("vazkii.botania:Botania:1.20.1-441-FORGE-SNAPSHOT")
+
     // Sophisticated Series also has github maven but
     // its artifacts are..... cursed
 //    modImplementation("curse.maven:sophisticated-backpacks-422301:4808060")

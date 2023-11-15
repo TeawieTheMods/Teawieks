@@ -31,6 +31,8 @@ import org.apache.logging.log4j.Logger
 import thedarkcolour.kotlinforforge.forge.FORGE_BUS
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 import vg.skye.teawieks.scaler.ScalerItem
+import vg.skye.teawieks.vazkiisbane.OpGetMana
+import vg.skye.teawieks.vazkiisbane.OpGetMaxMana
 import vg.skye.teawieks.wheex.OpSetLabel
 import java.io.IOException
 import java.util.function.Consumer
@@ -48,8 +50,16 @@ object Teawieks {
         register.register(MOD_BUS)
 
         val patternRegister = DeferredRegister.create(HexRegistries.ACTION, ID)
-        patternRegister.register("label") {
-            ActionRegistryEntry(HexPattern.fromAngles("wwedwewdweqawqwqwqwqwqw", HexDir.SOUTH_WEST), OpSetLabel())
+        patternRegister.apply {
+            register("label") {
+                ActionRegistryEntry(HexPattern.fromAngles("wwedwewdweqawqwqwqwqwqw", HexDir.SOUTH_WEST), OpSetLabel())
+            }
+            register("get_mana") {
+                ActionRegistryEntry(HexPattern.fromAngles("qaawdd", HexDir.NORTH_EAST), OpGetMana())
+            }
+            register("get_max_mana") {
+                ActionRegistryEntry(HexPattern.fromAngles("eddwaa", HexDir.NORTH_WEST), OpGetMaxMana())
+            }
         }
         patternRegister.register(MOD_BUS)
 

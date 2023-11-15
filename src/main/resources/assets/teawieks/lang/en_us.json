@@ -8,6 +8,13 @@
    "key.categories.wnboi": "WNBOI",
    "key.wnboi.default_context": "Open item radial menu(unused)",
 
+   "teawieks.hexcasting.entry.get_mana": "Mana Patterns",
+   "hexcasting.action.teawieks:get_mana": "Vazkii's Purification",
+   "hexcasting.action.teawieks:get_max_mana": "Vazkii's Purification II",
+   "teawieks.hexcasting.mishaps.no_mana": "A block that can store mana",
+   "teawieks.hexcasting.page.get_mana.0": "Gets the amount of mana stored in a block as a number. Curiously, this pattern was named after someone who strongly disliked the idea.",
+   "teawieks.hexcasting.page.get_mana.1": "Gets the maximum amount of mana that can be stored in a block as a number.",
+
    "teawieks.hexcasting.entry.main": "Teawieks",
    "teawieks.hexcasting.page.main": "I've discovered that I can dye my staves and spellbooks. For spellbooks, I can also flip through pages quickly with $(k:key.teawieks.open_iota_wheel).",
 
