@@ -8,6 +8,7 @@
     "dyhex.ItemStaffMixin",
     "dyhex.RegisterClientStuffMixin",
     "experiencefix.ServerPlayerMixin",
+    "maybechatreports.ServerGamePacketListenerImplMixin",
     "procheat.PlayerMixin",
     "procheat.ServerGamePacketListenerImplMixin",
     "procheat.ServerPlayerGameModeMixin",
@@ -15,6 +16,8 @@
     "scaler.ShiftScrollListenerMixin"
   ],
   "client": [
+    "maybechatreports.ClientPacketListenerMixin",
+    "quickconnect.TitleScreenMixin",
     "wheex.ItemSpellbookMixin"
   ],
   "injectors": {
