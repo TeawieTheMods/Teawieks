@@ -12,8 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin {
-    @Shadow public abstract ItemStack getItemBySlot(EquipmentSlot slot);
-
     @Shadow public abstract void startFallFlying();
 
     @Inject(method = "tryToStartFallFlying", at = @At("HEAD"), cancellable = true)
@@ -22,11 +20,8 @@ public abstract class PlayerMixin {
         Player player = (Player) (Object) this;
         if (player instanceof ServerPlayer sp && sp.getServer().isDedicatedServer())
         {
-            ItemStack item = getItemBySlot(EquipmentSlot.CHEST);
-            if (item.canElytraFly(player)) {
-                startFallFlying();
-                cir.setReturnValue(true);
-            }
+            startFallFlying();
+            cir.setReturnValue(true);
         }
     }
 }

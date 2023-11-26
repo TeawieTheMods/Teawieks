@@ -23,4 +23,19 @@ public class ServerGamePacketListenerImplMixin {
     private void noDisconnect3(ServerGamePacketListenerImpl instance, Component textComponent) {
         Teawieks.LOGGER.warn("ignoring public key validation failure");
     }
+
+    @Redirect(method = "handleMessageDecodeFailure", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerGamePacketListenerImpl;disconnect(Lnet/minecraft/network/chat/Component;)V"))
+    private void noDisconnect4(ServerGamePacketListenerImpl instance, Component textComponent) {
+        Teawieks.LOGGER.warn("ignoring chat validation failure");
+    }
+
+    @Redirect(method = "tryHandleChat", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerGamePacketListenerImpl;disconnect(Lnet/minecraft/network/chat/Component;)V"))
+    private void noDisconnect5(ServerGamePacketListenerImpl instance, Component textComponent) {
+        Teawieks.LOGGER.warn("ignoring chat validation failure");
+    }
+
+    @Redirect(method = "addPendingMessage", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerGamePacketListenerImpl;disconnect(Lnet/minecraft/network/chat/Component;)V"))
+    private void noDisconnect6(ServerGamePacketListenerImpl instance, Component textComponent) {
+        Teawieks.LOGGER.warn("ignoring chat validation failure");
+    }
 }
