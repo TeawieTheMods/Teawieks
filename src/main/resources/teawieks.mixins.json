@@ -8,6 +8,7 @@
     "dyhex.ItemStaffMixin",
     "dyhex.RegisterClientStuffMixin",
     "experiencefix.ServerPlayerMixin",
+    "fixgel.FlugelTiaraItemMixin",
     "maybechatreports.ServerGamePacketListenerImplMixin",
     "nickinator.PlayerMixin",
     "nickinator.ServerPlayerMixin",
