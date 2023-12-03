@@ -79,9 +79,6 @@ repositories {
     maven {
         url = uri("https://maven.blamejared.com")
     }
-    maven {
-        url = uri("https://maven.theillusivec4.top")
-    }
 //    exclusiveContent {
 //        forRepository {
 //            maven {

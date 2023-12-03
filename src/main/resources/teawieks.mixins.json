@@ -9,11 +9,14 @@
     "dyhex.RegisterClientStuffMixin",
     "experiencefix.ServerPlayerMixin",
     "maybechatreports.ServerGamePacketListenerImplMixin",
+    "nickinator.PlayerMixin",
+    "nickinator.ServerPlayerMixin",
     "procheat.PlayerMixin",
     "procheat.ServerGamePacketListenerImplMixin",
     "procheat.ServerPlayerGameModeMixin",
     "scaler.MsgShiftScrollC2SMixin",
-    "scaler.ShiftScrollListenerMixin"
+    "scaler.ShiftScrollListenerMixin",
+    "wherewasi.ServerPlayerMixin"
   ],
   "client": [
     "maybechatreports.ClientPacketListenerMixin",

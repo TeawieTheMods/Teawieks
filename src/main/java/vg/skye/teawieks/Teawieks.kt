@@ -17,8 +17,10 @@ import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.client.event.RegisterColorHandlersEvent
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent
 import net.minecraftforge.event.AddPackFindersEvent
+import net.minecraftforge.event.RegisterCommandsEvent
 import net.minecraftforge.event.TickEvent
 import net.minecraftforge.event.TickEvent.ClientTickEvent
+import net.minecraftforge.event.server.ServerStartingEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.ModList
 import net.minecraftforge.fml.common.Mod
@@ -30,10 +32,16 @@ import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import thedarkcolour.kotlinforforge.forge.FORGE_BUS
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
+import vg.skye.teawieks.countryroad.CountryroadData
+import vg.skye.teawieks.countryroad.countryroadRegisterCommands
+import vg.skye.teawieks.nickinator.NickinatorData
+import vg.skye.teawieks.nickinator.nickinatorRegisterCommands
 import vg.skye.teawieks.scaler.ScalerItem
+import vg.skye.teawieks.scotty.scottyRegisterCommands
 import vg.skye.teawieks.vazkiisbane.OpGetMana
 import vg.skye.teawieks.vazkiisbane.OpGetMaxMana
 import vg.skye.teawieks.wheex.OpSetLabel
+import vg.skye.teawieks.wherewasi.wherewasiRegisterCommands
 import java.io.IOException
 import java.util.function.Consumer
 
@@ -67,6 +75,8 @@ object Teawieks {
             MOD_BUS.register(this)
             FORGE_BUS.register(ForgeBusListener)
         }
+
+        FORGE_BUS.register(BisexualForgeBusListener)
     }
 
     @SubscribeEvent
@@ -127,6 +137,24 @@ object Teawieks {
             }
         } catch (ex: IOException) {
             throw RuntimeException(ex)
+        }
+    }
+
+    object BisexualForgeBusListener {
+        @SubscribeEvent
+        fun onInit(event: ServerStartingEvent) {
+            NickinatorData.attach(event.server)
+            CountryroadData.attach(event.server)
+        }
+
+        @SubscribeEvent
+        fun registerCommands(event: RegisterCommandsEvent) {
+            nickinatorRegisterCommands(event.dispatcher)
+            // Country road, take me home
+            countryroadRegisterCommands(event.dispatcher)
+            // Beam me up, scotty
+            scottyRegisterCommands(event.dispatcher)
+            wherewasiRegisterCommands(event.dispatcher)
         }
     }
 
