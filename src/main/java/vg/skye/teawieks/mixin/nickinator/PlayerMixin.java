@@ -15,10 +15,15 @@ public class PlayerMixin {
     @ModifyArg(method = "getDisplayName", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/scores/PlayerTeam;formatNameForTeam(Lnet/minecraft/world/scores/Team;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;"))
     private Component replaceNickname(Component text) {
         UUID uuid = ((Entity) (Object) this).getUUID();
-        var name = NickinatorData.getInstance().get(uuid);
-        if (name != null) {
-            return name;
+        // TODO: fix the clientside fuckery
+        if (NickinatorData.getInstance() != null) {
+            var name = NickinatorData.getInstance().get(uuid);
+            if (name != null) {
+                return name;
+            }
+            return text;
+        } else {
+            return text;
         }
-        return text;
     }
 }
