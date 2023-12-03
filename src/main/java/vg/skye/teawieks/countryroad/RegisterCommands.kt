@@ -48,7 +48,7 @@ fun countryroadRegisterCommands(dispatcher: CommandDispatcher<CommandSourceStack
                     home.pos.x, home.pos.y, home.pos.z,
                     user.yRot, user.xRot
                 )
-                ctx.source.sendSuccess({ Component.translatable("teawieks.command.home.failure") }, false)
+                ctx.source.sendSuccess({ Component.translatable("teawieks.command.home.success") }, false)
                 0
             }
     )
